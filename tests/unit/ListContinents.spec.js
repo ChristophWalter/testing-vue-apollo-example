@@ -1,7 +1,7 @@
 import { render } from "@testing-library/vue";
 import HelloWorld from "@/components/ListContinents.vue";
 import { apolloClient } from "@/apollo";
-import Vue from "vue";
+import flushPromises from "flush-promises";
 
 jest.mock("@/apollo", () => ({
   apolloClient: {
@@ -15,6 +15,14 @@ test("should load and show continents", async () => {
   });
   const { getByText } = render(HelloWorld);
   getByText("loading...");
-  await Vue.nextTick();
+  await flushPromises();
   getByText("Africa");
+});
+
+test("should show an error when loading continents fails", async () => {
+  apolloClient.query.mockRejectedValue();
+  const { getByText } = render(HelloWorld);
+  getByText("loading...");
+  await flushPromises();
+  getByText("Sorry, there was an error.");
 });

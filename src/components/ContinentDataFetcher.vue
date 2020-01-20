@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       data: null,
+      error: false,
       loading: true
     };
   },
@@ -18,6 +19,9 @@ export default {
       .then(({ data }) => {
         this.data = data;
       })
+      .catch(() => {
+        this.error = true;
+      })
       .finally(() => {
         this.loading = false;
       });
@@ -25,7 +29,8 @@ export default {
   render() {
     return this.$scopedSlots.default({
       loading: this.loading,
-      response: this.data
+      response: this.data,
+      error: this.error
     });
   }
 };

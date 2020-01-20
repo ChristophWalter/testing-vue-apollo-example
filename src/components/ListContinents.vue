@@ -1,6 +1,6 @@
 <template>
   <ContinentDataFetcher :query="getContinents">
-    <template v-slot="{ response, loading }">
+    <template v-slot="{ response, loading, error }">
       <div v-if="loading">
         loading...
       </div>
@@ -9,6 +9,7 @@
           {{ continent.name }}
         </div>
       </div>
+      <div v-else-if="error">Sorry, there was an error.</div>
     </template>
   </ContinentDataFetcher>
 </template>
