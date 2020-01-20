@@ -1,20 +1,22 @@
 <template>
-  <ApolloQuery :query="getContinents">
-    <template v-slot="{ result: { data } }">
-      <div v-if="data">
-        <div v-for="continent in data.continents" :key="continent.name">
+  <ContinentDataFetcher :query="getContinents">
+    <template v-slot="{ response }">
+      <div v-if="response">
+        <div v-for="continent in response.continents" :key="continent.name">
           {{ continent.name }}
         </div>
       </div>
     </template>
-  </ApolloQuery>
+  </ContinentDataFetcher>
 </template>
 
 <script>
 import gql from "graphql-tag";
+import ContinentDataFetcher from "./ContinentDataFetcher";
 
 export default {
   name: "HelloWorld",
+  components: { ContinentDataFetcher },
   data() {
     return {
       getContinents: gql`
