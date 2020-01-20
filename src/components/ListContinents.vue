@@ -1,7 +1,10 @@
 <template>
   <ContinentDataFetcher :query="getContinents">
-    <template v-slot="{ response }">
-      <div v-if="response">
+    <template v-slot="{ response, loading }">
+      <div v-if="loading">
+        loading...
+      </div>
+      <div v-else-if="response">
         <div v-for="continent in response.continents" :key="continent.name">
           {{ continent.name }}
         </div>

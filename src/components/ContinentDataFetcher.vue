@@ -6,7 +6,8 @@ export default {
   props: ["query"],
   data() {
     return {
-      data: null
+      data: null,
+      loading: true
     };
   },
   created() {
@@ -16,10 +17,14 @@ export default {
       })
       .then(({ data }) => {
         this.data = data;
+      })
+      .finally(() => {
+        this.loading = false;
       });
   },
   render() {
     return this.$scopedSlots.default({
+      loading: this.loading,
       response: this.data
     });
   }

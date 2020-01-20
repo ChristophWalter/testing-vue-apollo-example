@@ -9,11 +9,12 @@ jest.mock("@/apollo", () => ({
   }
 }));
 
-test("should show continents", async () => {
+test("should load and show continents", async () => {
   apolloClient.query.mockResolvedValue({
     data: { continents: [{ name: "Africa" }] }
   });
   const { getByText } = render(HelloWorld);
+  getByText("loading...");
   await Vue.nextTick();
   getByText("Africa");
 });
