@@ -1,9 +1,7 @@
-import { shallowMount } from "@vue/test-utils";
+import { render } from "@testing-library/vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 
-describe("HelloWorld.vue", () => {
-  it("renders hello world", () => {
-    const wrapper = shallowMount(HelloWorld);
-    expect(wrapper.text()).toMatch("Hello World");
-  });
+test("should show hello world", async () => {
+  const { getByText } = render(HelloWorld);
+  getByText("Hello World!");
 });
