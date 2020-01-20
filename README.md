@@ -1,4 +1,5 @@
 # testing-vue-apollo-example
+This project shows an example about testing a vue component with data from vue-apollo using the [vue-testing-library principles](https://testing-library.com/docs/guiding-principles).
 
 ## Project setup
 ```

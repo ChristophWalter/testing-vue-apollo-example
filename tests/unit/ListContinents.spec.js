@@ -3,6 +3,7 @@ import HelloWorld from "@/components/ListContinents.vue";
 import { apolloClient } from "@/apollo";
 import flushPromises from "flush-promises";
 
+// this can be moved to a global test setup file
 jest.mock("@/apollo", () => ({
   apolloClient: {
     query: jest.fn()
