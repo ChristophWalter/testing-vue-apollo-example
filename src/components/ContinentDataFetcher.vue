@@ -1,6 +1,4 @@
 <script>
-import { apolloClient } from "@/apollo";
-
 export default {
   name: "ContinentDataFetcher",
   props: ["query"],
@@ -12,7 +10,7 @@ export default {
     };
   },
   created() {
-    apolloClient
+    this.$apollo
       .query({
         query: this.query
       })
